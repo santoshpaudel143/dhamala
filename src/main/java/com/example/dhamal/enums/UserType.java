@@ -1,2 +1,5 @@
-package com.example.dhamal.enums;public class UserType {
+package com.example.dhamal.enums;
+
+public enum UserType {
+    ADMIN, SUPER_ADMIN, USER
 }

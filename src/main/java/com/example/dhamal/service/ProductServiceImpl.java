@@ -1,11 +1,17 @@
 package com.example.dhamal.service;
 
 import com.example.dhamal.pojo.Product;
+import com.example.dhamal.repository.UserRepo;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
+    private final UserRepo userRepo;
+
+    public ProductServiceImpl(UserRepo userRepo) {
+        this.userRepo = userRepo;
+    }
 
     @Override
     public Product getProductById(Integer id) {
@@ -21,4 +27,11 @@ public class ProductServiceImpl implements ProductService {
     public String getProduct(String name, Integer quantity) {
         return (name == null ? quantity.toString() : name);
     }
+
+    public Object getCRUDHere() {
+
+
+    }
 }
+
+
