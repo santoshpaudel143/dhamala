@@ -29,7 +29,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     public Object getCRUDHere() {
-
+        String username = "Ramesh";
+        return userRepo.findUserByUsername(username);
 
     }
 }
