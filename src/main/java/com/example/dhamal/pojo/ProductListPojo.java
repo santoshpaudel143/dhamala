@@ -12,9 +12,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductListPojo {
-    private Integer Id;
+    private Integer id;
     private String name;
     private String email;
     private String address;
-    private String userType;
+    private UserType userType;
 }
