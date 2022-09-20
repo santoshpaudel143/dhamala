@@ -1,4 +1,4 @@
-package com.example.dhamal.globalexception;
+package com.example.dhamal.globalException;
 
 import com.example.dhamal.pojo.ApiResponse;
 import org.hibernate.exception.ConstraintViolationException;
