@@ -17,8 +17,8 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @SequenceGenerator(sequenceName = "users_seq_gen",name="users_seq",allocationSize = 1)
-    @GeneratedValue(generator = "users_seq_gen",strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(sequenceName = "users_seq_gen", name = "users_seq", allocationSize = 1)
+    @GeneratedValue(generator = "users_seq_gen", strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     @Column(name = "name")
@@ -26,7 +26,6 @@ public class User {
     private String surName;
     private String email;
     private String address;
-
     @Enumerated(EnumType.STRING)
     private UserType userType;
 }

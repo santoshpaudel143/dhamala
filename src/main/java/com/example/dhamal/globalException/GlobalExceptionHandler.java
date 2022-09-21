@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ConstraintViolationException.class)
-    public ApiResponse handleUniqueViolation(ConstraintViolationException ex){
-        if(ex.getConstraintName().contains("unique")){
+    public ApiResponse handleUniqueViolation(ConstraintViolationException ex) {
+        if (ex.getConstraintName().contains("unique")) {
             ApiResponse apiResponse = new ApiResponse();
             // unique_user_name
             String unique = ex.getConstraintName().replace("unique_", "");
@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ApiResponse handleAllException(Exception ex){
+    public ApiResponse handleAllException(Exception ex) {
         ApiResponse apiResponse = new ApiResponse();
         return apiResponse.error(ex.getLocalizedMessage(), null);
 

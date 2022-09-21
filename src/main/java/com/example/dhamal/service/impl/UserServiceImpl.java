@@ -4,7 +4,6 @@ import com.example.dhamal.mapper.UserDetailMapper;
 import com.example.dhamal.model.User;
 import com.example.dhamal.pojo.ApiResponse;
 import com.example.dhamal.pojo.UserDetailResponsePojo;
-import com.example.dhamal.projection.UserDetailProjection;
 import com.example.dhamal.repository.UserRepo;
 import com.example.dhamal.service.UserService;
 import lombok.RequiredArgsConstructor;
