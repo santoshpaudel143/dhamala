@@ -2,6 +2,7 @@ package com.example.dhamal.repository;
 
 import com.example.dhamal.model.User;
 import com.example.dhamal.pojo.UserDataProjection;
+import com.example.dhamal.pojo.UserDetailResponsePojo;
 import com.example.dhamal.projection.UserDetailProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
