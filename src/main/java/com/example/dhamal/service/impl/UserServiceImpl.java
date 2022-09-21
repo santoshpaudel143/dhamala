@@ -28,3 +28,7 @@ public class UserServiceImpl implements UserService {
         return userDetailResponsePojo;
     }
 }
+
+/**
+ * This comment is written in new-branch
+ */
