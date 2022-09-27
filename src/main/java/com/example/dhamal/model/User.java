@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "UNIQUE_user_email")})
@@ -22,10 +24,14 @@ public class User {
     private Integer id;
 
     @Column(name = "name")
+    @NotNull
     private String name;
     private String surName;
     private String email;
     private String address;
     @Enumerated(EnumType.STRING)
     private UserType userType;
+    @OneToOne
+    @JoinColumn(name = "student_detail_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_user_student"))
+    private StudentDetails studentDetails;
 }

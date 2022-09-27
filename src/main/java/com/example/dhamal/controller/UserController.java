@@ -6,6 +6,8 @@ import com.example.dhamal.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("user/")
 @RequiredArgsConstructor
@@ -15,7 +17,7 @@ public class UserController extends ApiResponse {
 
     @GetMapping("getUser/{id}")
     public ApiResponse getUserById(@PathVariable(name = "id") Integer id) {
-        return userService.getUserById(id);
+        return success("User data fetched successufly", userService.getUserById(id));
     }
 
     @GetMapping("getUserByName")
@@ -24,7 +26,7 @@ public class UserController extends ApiResponse {
     }
 
     @PostMapping("save")
-    public ApiResponse saveUserDetails(@RequestBody UserDetailRequestPojo userDetailRequestPojo) {
+    public ApiResponse saveUserDetails(@RequestBody @Valid UserDetailRequestPojo userDetailRequestPojo) {
         userService.saveUserDetails(userDetailRequestPojo);
         return success("User details saved successfully", null);
     }

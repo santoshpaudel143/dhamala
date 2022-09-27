@@ -5,7 +5,7 @@ import com.example.dhamal.pojo.UserDetailRequestPojo;
 import com.example.dhamal.pojo.UserDetailResponsePojo;
 
 public interface UserService {
-    ApiResponse getUserById(Integer id);
+    Object getUserById(Integer id);
 
     Object getUserByName(String name);
 

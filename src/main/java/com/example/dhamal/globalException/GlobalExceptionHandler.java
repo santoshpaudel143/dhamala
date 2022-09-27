@@ -2,8 +2,12 @@ package com.example.dhamal.globalException;
 
 import com.example.dhamal.pojo.ApiResponse;
 import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.Objects;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -19,10 +23,23 @@ public class GlobalExceptionHandler {
         return null;
     }
 
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ApiResponse handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
+        ApiResponse apiResponse = new ApiResponse();
+        return apiResponse.error(ex.getCause().getCause().getLocalizedMessage(), null);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ApiResponse handelMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+        ApiResponse apiResponse = new ApiResponse();
+        return apiResponse.error(Objects.requireNonNull(ex.getFieldError()).getDefaultMessage(), null);
+
+    }
+
     @ExceptionHandler(Exception.class)
     public ApiResponse handleAllException(Exception ex) {
         ApiResponse apiResponse = new ApiResponse();
-        return apiResponse.error(ex.getLocalizedMessage(), null);
+        return apiResponse.error(ex.getMessage(), null);
 
     }
 }
