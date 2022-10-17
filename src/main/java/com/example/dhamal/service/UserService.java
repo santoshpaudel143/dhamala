@@ -9,5 +9,5 @@ public interface UserService {
 
     Object getUserByName(String name);
 
-    void saveUserDetails(UserDetailRequestPojo userDetailRequestPojo);
+    void saveUserDetails(UserDetailRequestPojo userDetailRequestPojo) throws Exception;
 }

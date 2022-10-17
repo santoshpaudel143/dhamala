@@ -3,9 +3,11 @@ package com.example.dhamal.controller;
 import com.example.dhamal.pojo.ApiResponse;
 import com.example.dhamal.pojo.UserDetailRequestPojo;
 import com.example.dhamal.service.UserService;
+import com.example.dhamal.utill.GenericFileHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @RestController
@@ -26,8 +28,12 @@ public class UserController extends ApiResponse {
     }
 
     @PostMapping("save")
-    public ApiResponse saveUserDetails(@RequestBody @Valid UserDetailRequestPojo userDetailRequestPojo) {
+    public ApiResponse saveUserDetails(@ModelAttribute @Valid UserDetailRequestPojo userDetailRequestPojo) throws Exception {
         userService.saveUserDetails(userDetailRequestPojo);
         return success("User details saved successfully", null);
+    }
+    @GetMapping("image")
+    public void getUserImage(@RequestParam("filePath") String filePath, HttpServletResponse response) throws Exception {
+        GenericFileHandler.getImage(filePath, response);
     }
 }

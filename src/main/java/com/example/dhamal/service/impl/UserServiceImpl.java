@@ -3,17 +3,15 @@ package com.example.dhamal.service.impl;
 import com.example.dhamal.mapper.UserDetailMapper;
 import com.example.dhamal.model.StudentDetails;
 import com.example.dhamal.model.User;
-import com.example.dhamal.pojo.ApiResponse;
 import com.example.dhamal.pojo.UserDetailRequestPojo;
 import com.example.dhamal.pojo.UserDetailResponsePojo;
 import com.example.dhamal.repository.StudentDetailsRepo;
 import com.example.dhamal.repository.UserRepo;
 import com.example.dhamal.service.UserService;
+import com.example.dhamal.utill.GenericFileHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -26,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Object getUserById(Integer id) {
-       return userRepo.findById(id).orElseThrow(() -> new RuntimeException("User not found by given id"));
+        return userRepo.findById(id).orElseThrow(() -> new RuntimeException("User not found by given id"));
 
     }
 
@@ -37,13 +35,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveUserDetails(UserDetailRequestPojo userDetailRequestPojo) {
-        User user = null;
-        if (userDetailRequestPojo.getId() != null)
-            user = userRepo.findById(userDetailRequestPojo.getId()).orElse(new User());
-        user = objectMapper.convertValue(userDetailRequestPojo, User.class);
+    public void saveUserDetails(UserDetailRequestPojo userDetailRequestPojo) throws Exception {
+        String imagePath = GenericFileHandler.saveImage(userDetailRequestPojo.getUserImage(), "/file/image/user/");
         StudentDetails studentDetails = studentDetailsRepo.findById(userDetailRequestPojo.getStudentDetailId()).orElseThrow(() -> new RuntimeException("Student Detail Id Not Exist."));
-        user.setStudentDetails(studentDetails);
+        User user = User
+                .builder()
+                .name(userDetailRequestPojo.getName())
+                .surName(userDetailRequestPojo.getSurName())
+                .address(userDetailRequestPojo.getAddress())
+                .email(userDetailRequestPojo.getEmail())
+                .studentDetails(studentDetails)
+                .imagePath(imagePath)
+                .build();
         userRepo.save(user);
     }
 }

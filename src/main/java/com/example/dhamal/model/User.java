@@ -1,10 +1,8 @@
 package com.example.dhamal.model;
 
 import com.example.dhamal.enums.UserType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class User {
 
     @Id
@@ -34,4 +33,5 @@ public class User {
     @OneToOne
     @JoinColumn(name = "student_detail_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_user_student"))
     private StudentDetails studentDetails;
+    private String imagePath;
 }
